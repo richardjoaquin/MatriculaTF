@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+
+			<div class="card-header">Mantenimiento de Alumnos</div>
+			<div class="card-body">
+
+				<div class="title">
+							<h2> Alumnos </h2>
+							<a href="/students/new" class="btn btn-primary"> Nuevo Alumno </a>
+							<h6>__________________________________________________________________</h6>
+						</div>
+
+								<form action="/students/searchStudent" method="GET">
+								<div class="form-row align-items-center">
+								<div class="col-auto">
+									<label class="sr-only" for="filterId">Buscar Alumno</label>
+									<input id="filterId" type="text" class="form control" name="filterId"
+									placeholder="Buscar por codigo">
+								</div>
+								
+								<div class="col-auto">
+									<button type="submit" class="btn btn-primary">Buscar</button>
+								</div>
+								</div>
+							</form>	
+								
+							
+
+	<div class ="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<!--<th>Cuenta</th>-->
+							<th>Carrera</th>
+							<th>Semestre</th>
+							<th>Seleccionar</th>
+							<th>Seleccionar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="student : ${students}">
+
+						    <td th:text="${student.id}">MatriculaTF</td> 
+							<td th:text="${student.name}">MatriculaTF</td> 
+							<td th:text="${student.lastName}">MatriculaTF</td>
+							<!--<td th:text="${student.account.username}">MatriculaTF</td>-->
+							<td th:text="${student.career}">MatriculaTF</td>
+							<td th:text="${student.semester}">MatriculaTF</td>
+						  <td><a th:href="@{'/students/edit/' + ${student.id}}"
+								class="btn btn-warning">Modificar</a></td>
+							<td><a th:href="@{'/students/delete/' + ${student.id}}"
+								class="btn btn-info">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+
+	</div>
+	
+</body>
+</html>

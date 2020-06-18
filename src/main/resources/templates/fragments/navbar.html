@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/welcome/start">Academia Freud</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      
+          <span class="sr-only">(current)</span>
+        </a>
+        
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors/list}" >Gestionar Profesores</a>
+      </li>
+      
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/list}" >Gestionar Cursos</a>
+      </li>
+      
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestionar Alumnos</a>
+      </li>
+      
+      <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/studentCourses}">Informacion Academica</a>
+      </li>
+      
+       <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCoursesAvailables}">Cursos Disponibles</a>
+      </li>
+      
+      <li class="nav-item"><a th:href="@{/logout}"
+					class="nav-link" sec:authorize="isAuthenticated()"> Cerrar Sesion</a>				
+	   </li>
+    </ul>
+  </div>
+  
+  <div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+  <div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+  <div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+</nav>
