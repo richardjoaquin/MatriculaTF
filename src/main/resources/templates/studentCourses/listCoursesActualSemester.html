@@ -42,7 +42,7 @@
 
 	<div class ="table-responsive">
 				<table class="table table-striped">
-					<thead>
+					<thead class="thead-dark">
 						<tr>
 							<th>Semestre</th>
 							<th>Curso</th>
@@ -50,6 +50,7 @@
 							<th>Dia</th>
 							<th>Hora Inicial</th>
 							<th>Hora Final</th>
+							<th>  </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -62,7 +63,7 @@
 							<td th:text="${studentCourse.course.startTime}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.endTime}">MatriculaTF</td>
 							<td><a th:href="@{'/studentCourses/delete/' + ${studentCourse.id}}"
-								class="btn btn-warning">Eliminar</a></td>
+								class="btn btn-danger">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>

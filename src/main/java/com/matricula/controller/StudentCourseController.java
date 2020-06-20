@@ -84,7 +84,7 @@ public class StudentCourseController {
 				if (!studentCourses.isEmpty()) {
 					if(searchedSemester==Integer.parseInt(actualSemesterr)) {
 					model.addAttribute("studentCourses", studentCourses);
-					model.addAttribute("success", "Busqueda realizadaa correctamente");
+					model.addAttribute("success", "Busqueda realizada correctamente");
 					return "studentCourses/listCoursesActualSemester";
 					} else {
 					model.addAttribute("studentCourses", studentCourses);
