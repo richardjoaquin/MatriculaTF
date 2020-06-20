@@ -8,26 +8,26 @@
 
 		<div class="card" style="max-width: 100%;">
 
-			<div class="card-header">Mi Matricula</div>
+			<div class="card-header">Matricula</div>
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Visualizar Cursos Disponibles </h2>
+							<h2> Cursos Disponibles </h2>
 							
 						</div>		
 
 	<div class ="table-responsive">
 				<table class="table table-striped">
-					<thead>
+					<thead class="thead-dark">
 						<tr>
-							<th>Id</th>
-							<th>Nombre</th>
+							<th></th>
+							<th>Curso</th>
 							<th>Profesor</th>
 							<th>Dia</th>
 							<th>Hora Inicial</th>
 							<th>Hora Final</th>
 							<th>Vacantes</th>
-							<th>Seleccionar</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,7 +41,7 @@
 							<td th:text="${course.endTime}">MatriculaTF</td>
 							<td th:text="${course.amount}">MatriculaTF</td>
 							<td><a th:href="@{'/studentCourses/register/' + ${course.id}}"
-								class="btn btn-warning">Seleccionar</a></td>
+								class="btn btn-success">Seleccionar</a></td>
 						</tr>
 					</tbody>
 				</table>

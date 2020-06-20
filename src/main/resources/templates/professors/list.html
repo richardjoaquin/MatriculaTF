@@ -11,36 +11,36 @@
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Gestionar Profesores </h2>
-							<a href="/professors/new" class="btn btn-primary"> Nuevo Profesor </a>
-							<h6>__________________________________________________________________</h6>
-						</div>
-
-							<form action="/professors/search" method="GET">
-								<div class="form-row align-items-center">
-								<div class="col-auto">
-									<label class="sr-only" for="filterId">Buscar Profesor</label>
-									<input id="filterId" type="text" class="form control" name="filterId"
-									placeholder="Buscar por codigo">
-								</div>
+					<h2> Gestionar Profesores </h2>
+					<a href="/professors/new" class="btn btn-primary"> Nuevo Profesor </a>
+					<hr class="my-20">
+				</div>
+				
+		   <form action="/professors/search" method="GET">
+	        <div class="form-row align-items-center">
+	      
+	           <div class="col-auto">
+	              <label class="sr-only" for="filterId">Buscar Profesor</label>
+	              <input id="filterId" type="text" class="form control" name="filterId" placeholder="Buscar por codigo">
+	           </div>
 								
-								<div class="col-auto">
-									<button type="submit" class="btn btn-primary">Buscar</button>
-								</div>
-								</div>
-							</form>	
-							
-							<h2> </h2>	
+	           <div class="col-auto">
+	              <button type="submit" class="btn btn-primary">Buscar</button>
+	           </div>
+	        </div>
+	      </form>	
+	      
+	      	<h2>     </h2>
 
-	<div class ="table-responsive">
+	 <div class ="table-responsive">
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Id</th>
+							<th>ID</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th>Seleccionar</th>
-							<th>Seleccionar</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,7 +52,7 @@
 							<td><a th:href="@{'/professors/edit/' + ${professor.id}}"
 								class="btn btn-warning">Modificar</a></td>
 							<td><a th:href="@{'/professors/delete/' + ${professor.id}}"
-								class="btn btn-info">Eliminar</a></td>
+								class="btn btn-danger">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>

@@ -8,18 +8,17 @@
 
 		<div class="card" style="max-width: 100%;">
 
-			<div class="card-header">Mis Cursos</div>
 			<div class="card-body">
 
 				<div class="title">
-							<h2> Cursos Matriculados </h2>
-							
-							<h6>__________________________________________________________________</h6>
-						</div>
+					<h2> Cursos Matriculados </h2>							
+					<hr class="my-20">
+				</div>
 
-									<form action="/studentCourses/search" method="GET">
-								<div class="form-row align-items-center">
-									<label for="course">Semestre a Buscar</label> 
+				<form action="/studentCourses/search" method="GET">
+					<div class="form-row align-items-center">
+						<label for="course">Semestre a buscar   </label> 
+						<label for="course1">  </label> 
 								<select id="semester"
 									name="semester">
 									<option value="201601">201601</option>
@@ -34,11 +33,12 @@
 									<option value="202002">202002</option>
 		
 								</select>											
-								<div class="col-auto">
-									<button type="submit" onclick="getData()" class="btn btn-primary">Buscar</button>
-								</div>
-								</div>
-							</form>			
+						<div class="col-auto">
+							<button type="submit" onclick="getData()" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+				<h2>     </h2>			
 
 	<div class ="table-responsive">
 				<table class="table table-striped">
