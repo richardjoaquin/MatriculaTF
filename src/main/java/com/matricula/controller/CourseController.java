@@ -79,11 +79,11 @@ public class CourseController {
 	public String saveNewCourse(Course course, Model model) throws Exception {
 		if(!course.getName().isEmpty() && !course.getStartTime().isEmpty() && !course.getEndTime().isEmpty()) {
 					courseService.createCourse(course);
-					model.addAttribute("success", "Curso registrado correctamente");
+					model.addAttribute("success", "Curso guardado con exito");
 					model.addAttribute("courses", courseService.getAllCourses());
 					return "redirect:/courses/list";
 		} else {
-			model.addAttribute("error", "Debe completar todos los campos");
+			model.addAttribute("error", "Completar todos los campos");
 			List<Professor> professors = professorService.getAllProfessors();
 			model.addAttribute("professors", professors);
 			return "courses/new";
@@ -102,11 +102,11 @@ public class CourseController {
     public String updateCourse(@PathVariable("id") long id, Course course,Model model) throws Exception {
 		if(course.getName().isEmpty()==false && course.getStartTime().isEmpty()==false && course.getEndTime().isEmpty()==false) {
 		courseService.updateCourse(id, course);
-        model.addAttribute("success", "Curso actualizado correctamente");
+        model.addAttribute("success", "Curso guardado con exito");
 		model.addAttribute("courses", courseService.getAllCourses());
 		return "/courses/list";
 		} else {
-			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("error","Completar todos los campos");
 			model.addAttribute("course", courseToEdit);
 			model.addAttribute("professors", professorService.getAllProfessors());
 			return "courses/edit";
@@ -136,17 +136,17 @@ public class CourseController {
 			if (!filterName.isEmpty()) {
 				List<Course> courses = courseService.findByName(filterName);
 				if (!courses.isEmpty()) {
-					model.addAttribute("info", "Busqueda realizada correctamente");
+					model.addAttribute("info", "Se realizo correctamente");
 					model.addAttribute("courses", courses);
 					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";
 				} else {
-					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("info", "No existen el curso");
 					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";
 				}
 			} else {
-				model.addAttribute("error", "Debe completar el campo de búsqueda.");
+				model.addAttribute("error", "Completar el campo de búsqueda");
 				model.addAttribute("coursesToSearch", courseService.getAllCourses());
 				return "courses/list";
 			}
