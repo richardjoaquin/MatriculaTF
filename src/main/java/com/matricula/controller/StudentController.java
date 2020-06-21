@@ -54,17 +54,17 @@ public class StudentController {
 				Long id= Long.parseLong(filterId);
 				students = studentService.finddById(id);
 				if (!students.isEmpty()) {
-					model.addAttribute("succes", "Busqueda realizada correctamente");
+					model.addAttribute("succes", "Se realizo correctamente la busqueda");
 					model.addAttribute("students", students);
 					return "students/list";
 				} else {
-					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("info", "No existe el codigo del alumno");
 					model.addAttribute("students", students);
 					return "students/list";
 				}
 			} else {
 				model.addAttribute("students", students);
-				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("error", "Completar el campo de busqueda");
 				return "students/list";
 			}
 	
@@ -89,10 +89,10 @@ public class StudentController {
 		student.setAccount(userService.findById(numerator));
 		studentService.createStudent(student);
 		model.addAttribute("students", studentService.getAllStudents());
-		model.addAttribute("success", "Alumno registrado correctamente");
+		model.addAttribute("success", "Alumno guardado con exito");
 		return "students/list";
 		} else {
-			model.addAttribute("error", "Debe completar todos los campos");
+			model.addAttribute("error", "Completar todos los campos");
 			return "students/new";
 		}
 	}
@@ -108,11 +108,11 @@ public class StudentController {
     public String updateStudent(@PathVariable("id") Long id, Student student, Model model) throws Exception {
 		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false && student.getCorreo().isEmpty()==false) {
         studentService.updateStudent(id, student);
-        model.addAttribute("success", "Alumno actualizado correctamente");
+        model.addAttribute("success", "Alumno guardado con exito");
         model.addAttribute("students", studentService.getAllStudents());
         return "students/list";    
 		} else {
-			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("error","Completar todos los campos");
 			model.addAttribute("student", studentToEdit);
 			return "students/edit";
 		}

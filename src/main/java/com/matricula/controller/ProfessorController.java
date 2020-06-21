@@ -60,11 +60,11 @@ public class ProfessorController {
 		
 		if(professor.getName().isEmpty()==false && professor.getLastName().isEmpty()==false) {
 		professorService.createProfessor(professor);
-		model.addAttribute("success", "Profesor registrado correctamente");
+		model.addAttribute("success", "Profesor guardado con exito");
 		model.addAttribute("professors", professorService.getAllProfessors());
 		return "professors/list";
 		} else {
-			model.addAttribute("error", "Debe completar todos los campos");
+			model.addAttribute("error", "Completar todos los campos");
 			return "professors/new";
 		}
 	}
@@ -81,12 +81,12 @@ public class ProfessorController {
 		
 		if(professor.getName().isEmpty()==false && professor.getLastName().isEmpty()==false) {
         professorService.updateProfessor(id, professor);
-        model.addAttribute("success", "Profesor actualizado correctamente");
+        model.addAttribute("success", "Profesor guardado con exito");
         model.addAttribute("professors", professorService.getAllProfessors());
        	return "professors/list"; 
 		
 		} else {
-			model.addAttribute("error","Debe completar todos los campos");
+			model.addAttribute("error","Completar todos los campos");
 			model.addAttribute("professor", professorToEdit);
 			return "professors/edit";
 		}
@@ -117,15 +117,15 @@ public class ProfessorController {
 				professors=professorService.finddById(id);
 				if (!professors.isEmpty()) {
 					model.addAttribute("professors", professors);
-					model.addAttribute("success", "Busqueda realizada correctamente");
+					model.addAttribute("success", "Se realizo correctamente la busqueda");
 					return "professors/list";
 				} else {
-					model.addAttribute("info", "No existen coincidencias");
+					model.addAttribute("info", "No existe el codigo del profesor");
 					model.addAttribute("professors", professorService.getAllProfessors());
 					return "professors/list";
 				}
 			} else {
-				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("error", "Ingrese el codigo del profesor");
 				model.addAttribute("professors", professorService.getAllProfessors());
 				return "professors/list";
 			}
