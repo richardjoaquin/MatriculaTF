@@ -1,6 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #343B43;">
   <a class="navbar-brand" href="/welcome/start">Course</a>
-  
+
+<style>
+  a {color: #f00;}
+  a:hover {color: #0f0;}
+</style>
   <button            
     class="navbar-toggler"
     type="button"
@@ -18,24 +22,24 @@
       
         <span class="sr-only">(current)</span>
         	
-        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors/list}" >Gestionar Profesores</a>
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" >
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors/list}" >Gestion Profesores</a>
         </li>
       
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/list}" >Gestionar Cursos</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/list}" >Gestion Cursos</a>
         </li>
       
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestionar Alumnos</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestion Alumnos</a>
         </li>
       
         <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/studentCourses}">Informacion Academica</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/studentCourses}">Situacion Academica</a>
         </li>
       
         <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCoursesAvailables}">Cursos Disponibles</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCoursesAvailables}">Matricula</a>
         </li>
       
         <li class="nav-item">
