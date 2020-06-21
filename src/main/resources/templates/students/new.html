@@ -64,6 +64,29 @@
 									<option value="10">10</option>
 								</select>
 					</div>
+					
+					<div class="form-group">
+								<label for="modalidad">Tipo de Modalidad</label> <select id="modalidad"
+									name="modalidad">
+									<option value="Modalidad General">Modalidad General</option>
+									<option value="Modalidad Preferencial">Modalidad Preferencial</option>
+								</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="correo">Correo</label> <input type="email"
+							class="form-control" id="correo" aria-describedby="correo"
+							th:field="*{correo}" placeholder="Ingrese su correo electrónico" />
+					</div>
+					
+					<div class="form-group">
+								<label for="estado">Estado del Alumno</label> <select id="estado"
+									name="estado">
+									<option value="Matriculado">Matriculado</option>
+									<option value="Expulsado">Expulsado</option>
+									<option value="Egresado">Egresado</option>
+								</select>
+					</div>
 				
 					<button type="submit" class="btn btn-success">Confirmar</button>
 					<a th:href="@{/students/list}" class="btn btn-primary">Regresar</a>

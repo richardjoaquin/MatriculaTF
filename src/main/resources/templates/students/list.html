@@ -41,7 +41,9 @@
 							<th>Apellidos</th>
 							<th>Carrera</th>
 							<th>Semestre</th>
-							<th></th>
+							<th>Tipo de Modalidad</th>
+							<th>Correo</th>
+							<th>Estado</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -54,10 +56,11 @@
 							<!--<td th:text="${student.account.username}">MatriculaTF</td>-->
 							<td th:text="${student.career}">MatriculaTF</td>
 							<td th:text="${student.semester}">MatriculaTF</td>
+							<td th:text="${student.modalidad}">MatriculaTF</td>
+							<td th:text="${student.correo}">MatriculaTF</td>
+							<td th:text="${student.estado}">MatriculaTF</td>
 						  <td><a th:href="@{'/students/edit/' + ${student.id}}"
 								class="btn btn-warning">Modificar</a></td>
-							<td><a th:href="@{'/students/delete/' + ${student.id}}"
-								class="btn btn-danger">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>

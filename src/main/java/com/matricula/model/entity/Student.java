@@ -40,6 +40,17 @@ public class Student {
 	//@NotEmpty(message="Ingrese en que ciclo se encuentra")
 	private Integer semester;
 	
+	@Column(name = "correo")
+	//@NotEmpty(message="Ingrese su email")
+	private String correo;
+	
+	@Column(name = "modalidad")
+	//@NotEmpty(message="Ingrese el tipo de modalidad")
+	private String modalidad;
+	
+	@Column(name = "estado")
+	//@NotEmpty(message="Ingrese el estado actual del alumno")
+	private String estado;
 	
 	public Long getId() {
 		return id;
@@ -89,6 +100,31 @@ public class Student {
 		this.semester = semester;
 	}
 
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getModalidad() {
+		return modalidad;
+	}
+
+	public void setModalidad(String modalidad) {
+		this.modalidad = modalidad;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 
 	
 }

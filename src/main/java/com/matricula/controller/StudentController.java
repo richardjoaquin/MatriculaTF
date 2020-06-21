@@ -83,7 +83,7 @@ public class StudentController {
 	
 	@PostMapping("/save")
 	public String createStudentForm(Student student, Model model) throws Exception {
-		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
+		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false && student.getCorreo().isEmpty()==false) {
 		numerator++;
 		//Long numerator=1L;
 		student.setAccount(userService.findById(numerator));
@@ -106,7 +106,7 @@ public class StudentController {
 	
 	@PostMapping("/update/{id}")
     public String updateStudent(@PathVariable("id") Long id, Student student, Model model) throws Exception {
-		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false) {
+		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false && student.getCorreo().isEmpty()==false) {
         studentService.updateStudent(id, student);
         model.addAttribute("success", "Alumno actualizado correctamente");
         model.addAttribute("students", studentService.getAllStudents());

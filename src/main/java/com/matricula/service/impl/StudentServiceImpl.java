@@ -52,6 +52,9 @@ public class StudentServiceImpl implements StudentService {
 		student.setLastName(studentDetails.getLastName());
 		student.setName(studentDetails.getName());
 		student.setSemester(studentDetails.getSemester());
+		student.setCorreo(studentDetails.getCorreo());
+		student.setModalidad(studentDetails.getModalidad());
+		student.setEstado(studentDetails.getEstado());
 		studentRepository.save(student);
 		return student;
 	}
