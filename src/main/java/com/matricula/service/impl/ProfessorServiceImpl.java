@@ -24,7 +24,15 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		professorRepository.findAll().iterator().forEachRemaining(professors::add);
 		return professors;
 	}
-
+	
+	@Override
+	public List<Professor> getAllProfessorsAvailable() {
+		List<Professor> professors = new ArrayList<>();
+		String contratado = "Contratado";
+		professorRepository.findProfessorsAvailable(contratado).iterator().forEachRemaining(professors::add);
+		return professors;
+	}
+	
 	@Override
 	public Professor createProfessor(Professor professor) {
 		Professor newProfessor=professorRepository.save(professor);
@@ -36,6 +44,8 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		Professor professor=findById(id);
 		professor.setName(professorDetails.getName());
 		professor.setLastName(professorDetails.getLastName());
+		professor.setCargo(professorDetails.getCargo());
+		professor.setEstado(professorDetails.getEstado());
 		professorRepository.save(professor);
 		return professor;
 	}

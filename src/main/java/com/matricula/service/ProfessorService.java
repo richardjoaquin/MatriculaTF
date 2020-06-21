@@ -24,4 +24,7 @@ public interface ProfessorService {
 	Professor getLatestEntry();
 	
 	List<Professor> findProfessorOnCourse();
+	
+	List<Professor> getAllProfessorsAvailable();
+
 }

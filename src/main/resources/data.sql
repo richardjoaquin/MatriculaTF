@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 83a7956b75c8f82c574b38516334bd5c60f308f3
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Jimmy', 'Armas', 'Docente Asociado', 'Contratado');
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ana', 'Navarro', 'Docente Asociado', 'Contratado');
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Pilar', 'Muñoz', 'Docente Asociado', 'Contratado');
@@ -7,6 +11,20 @@ INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Vicente', 'Cale
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ruben', 'Moya', 'Docente Asociado', 'Contratado');
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ivan', 'Ramirez', 'Docente Asociado', 'Despedido');
 INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ramon', 'Torres', 'Docente Asociado', 'Despedido');
+<<<<<<< HEAD
+=======
+=======
+INSERT INTO professors (name, last_name) VALUES ('Jimmy', 'Armas');
+INSERT INTO professors (name, last_name) VALUES ('Ana', 'Navarro');
+INSERT INTO professors (name, last_name) VALUES ('Pilar', 'Muñoz');
+INSERT INTO professors (name, last_name) VALUES ('Jesus', 'Fernandez');
+INSERT INTO professors (name, last_name) VALUES ('Marta', 'Picazo');
+INSERT INTO professors (name, last_name) VALUES ('Vicente', 'Calero');
+INSERT INTO professors (name, last_name) VALUES ('Ruben', 'Moya');
+INSERT INTO professors (name, last_name) VALUES ('Ivan', 'Ramirez');
+INSERT INTO professors (name, last_name) VALUES ('Ramon', 'Torres');
+>>>>>>> 37ef678795032ee3207a1f7f6abb914d84eb7b7f
+>>>>>>> 83a7956b75c8f82c574b38516334bd5c60f308f3
 
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Digital Analytics', 10, 1, 2, 'Ingenieria de Sistemas', 'Viernes', '13:00', '15:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Diseño de Experimentos', 10, 2, 2, 'Ingenieria de Sistemas', 'Jueves', '19:00', '22:00' );

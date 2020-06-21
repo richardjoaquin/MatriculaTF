@@ -66,7 +66,7 @@ public class CourseController {
 		model.addAttribute("course", new Course());
 		professor=new Professor();
 		model.addAttribute("professor", professor); //CAMBIO HECHO
-		List<Professor> professors = professorService.getAllProfessors();
+		List<Professor> professors = professorService.getAllProfessorsAvailable();
 		model.addAttribute("professors", professors);
 		return "courses/new";
 		}catch(Exception e) {
@@ -84,7 +84,7 @@ public class CourseController {
 					return "redirect:/courses/list";
 		} else {
 			model.addAttribute("error", "Completar todos los campos");
-			List<Professor> professors = professorService.getAllProfessors();
+			List<Professor> professors = professorService.getAllProfessorsAvailable();
 			model.addAttribute("professors", professors);
 			return "courses/new";
 		}
@@ -94,7 +94,7 @@ public class CourseController {
     public String editCourseForm(@PathVariable("id") long id, Model model) throws Exception {
         courseToEdit = courseService.findById(id);
         model.addAttribute("course", courseToEdit);
-        model.addAttribute("professors", professorService.getAllProfessors());
+        model.addAttribute("professors", professorService.getAllProfessorsAvailable());
         return "courses/edit";
     }
 	
@@ -108,7 +108,7 @@ public class CourseController {
 		} else {
 			model.addAttribute("error","Completar todos los campos");
 			model.addAttribute("course", courseToEdit);
-			model.addAttribute("professors", professorService.getAllProfessors());
+			model.addAttribute("professors", professorService.getAllProfessorsAvailable());
 			return "courses/edit";
 		}
 	}
