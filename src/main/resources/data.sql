@@ -1,9 +1,12 @@
-INSERT INTO professors (name, last_name) VALUES ('Henry', 'Martinez');
-INSERT INTO professors (name, last_name) VALUES ('Mario', 'Castro');
-INSERT INTO professors (name, last_name) VALUES ('Julio', 'Gomez');
-INSERT INTO professors (name, last_name) VALUES ('Hugo', 'Mosquera');
-INSERT INTO professors (name, last_name) VALUES ('Cesar', 'Garcia');
-INSERT INTO professors (name, last_name) VALUES ('Hernan', 'Alvitez');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Jimmy', 'Armas', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ana', 'Navarro', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Pilar', 'Muñoz', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Jesus', 'Fernandez', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Marta', 'Picazo', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Vicente', 'Calero', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ruben', 'Moya', 'Docente Asociado', 'Contratado');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ivan', 'Ramirez', 'Docente Asociado', 'Despedido');
+INSERT INTO professors (name, last_name, cargo, estado) VALUES ('Ramon', 'Torres', 'Docente Asociado', 'Despedido');
 
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Geografia', 10, 1, 2, 'Ingenieria de Sistemas', 'Jueves', '07:00', '09:00' );
 INSERT INTO courses (name, amount, professor_id, semester, career, day, start_time, end_time) VALUES ('Matematica', 10, 2, 2, 'Ingenieria de Sistemas', 'Jueves', '10:00', '12:00' );

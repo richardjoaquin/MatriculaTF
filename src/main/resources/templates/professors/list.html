@@ -39,7 +39,8 @@
 							<th>ID</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th></th>
+							<th>Cargo</th>
+							<th>Estado</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -49,10 +50,11 @@
 							<td th:text="${professor.id}">MatriculaTF</td>
 							<td th:text="${professor.name}">MatriculaTF</td>
 							<td th:text="${professor.lastName}">MatriculaTF</td>
+							<td th:text="${professor.cargo}">MatriculaTF</td>
+							<td th:text="${professor.estado}">MatriculaTF</td>
 							<td><a th:href="@{'/professors/edit/' + ${professor.id}}"
 								class="btn btn-warning">Modificar</a></td>
-							<td><a th:href="@{'/professors/delete/' + ${professor.id}}"
-								class="btn btn-danger">Eliminar</a></td>
+
 						</tr>
 					</tbody>
 				</table>

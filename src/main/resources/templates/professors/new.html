@@ -28,6 +28,22 @@
 							class="form-control" id="lastName" aria-describedby="lastName"
 							th:field="*{lastName}" placeholder="Ingrese apellidos" />
 					</div>
+					
+					<div class="form-group">
+								<label for="cargo">Cargo del Profesor</label> <select id="cargo"
+									name="cargo">
+									<option value="Docente Asociado">Docente Asociado</option>
+									<option value="Docente Tiempo Parcial">Docente Tiempo Parcial</option>
+								</select>
+					</div>
+					
+					<div class="form-group">
+								<label for="estado">Estado del Profesor</label> <select id="estado"
+									name="estado">
+									<option value="Contratado">Contratado</option>
+									<option value="Despedido">Despedido</option>
+								</select>
+					</div>					
 				
 					<button type="submit" class="btn btn-success">Confirmar</button>
 					<a th:href="@{/professors/list}" class="btn btn-primary">Regresar</a>

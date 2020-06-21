@@ -24,6 +24,14 @@ public class Professor {
 	@Column(name = "last_name")
 	//@NotEmpty(message="Ingrese apellido")
 	private String lastName;
+	
+	@Column(name = "estado")
+	//@NotEmpty(message="Ingrese estado actual del profesor")
+	private String estado;
+	
+	@Column(name = "cargo")
+	//@NotEmpty(message="Ingrese cargo actual del profesor")
+	private String cargo;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -46,6 +54,22 @@ public class Professor {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	
