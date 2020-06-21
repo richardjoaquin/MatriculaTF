@@ -2,7 +2,6 @@ package com.matricula.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.matricula.model.repository.ProfessorRepository;
 import com.matricula.model.entity.Professor;
+import com.matricula.model.entity.Student;
 import com.matricula.service.ProfessorService;
 
 @Service
@@ -92,9 +92,13 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		return professorRepository.findProfessorsOnCourse();
 	}
 
-	/*@Override
-	public Page<Professor> findByLastName(String lastName, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+	@Override
+	public List<Professor> fecthProfessorByMC(String estado, String cargo) throws Exception {
+	return professorRepository.fecthProfessorByMC(estado, cargo);
+	}
+	
+	@Override
+	public List<Professor> fecthProfessorByMCEX(String estado, String cargo) throws Exception {
+	return professorRepository.fecthProfessorByMCEX(estado, cargo);
+	}
 }

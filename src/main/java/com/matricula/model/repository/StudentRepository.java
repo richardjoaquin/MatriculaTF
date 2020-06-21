@@ -2,33 +2,17 @@ package com.matricula.model.repository;
 
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import com.matricula.model.entity.Account;
-import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Student;
 
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 	
-	/**
-     * @return newest articleId
-     */
 	@Query("SELECT MAX(id) FROM Student")
     Long findTopByOrderByIdDesc();
-	
-	
-	/**
-     * @param pageable
-     * @return          a page of entities that fulfill the restrictions
-     *                  specified by the Pageable object
-     */
-	List<Student> findAll();
 
 	@Query("SELECT s FROM Student s WHERE s.id=?1")
 	Student fetchById(Long id);
@@ -41,4 +25,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	 
 	 @Query("SELECT sc.student FROM StudentCourse sc")
 	 List<Student> findStudentOnStudentCourses();
+	 
+	 @Query("SELECT s from Student s where s.estado like ?1 or s.career like ?2")
+	 List<Student> fecthStudentByMC(String estado, String career);
+	  
+	 @Query("SELECT s from Student s where s.estado like ?1 and s.career like ?2")
+	 List<Student> fecthStudentByMCEX(String estado, String career);
 }

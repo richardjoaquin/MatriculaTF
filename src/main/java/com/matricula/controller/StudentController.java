@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 import com.matricula.service.StudentService;
 import com.matricula.service.UserService;
@@ -25,12 +23,6 @@ public class StudentController {
 	
 	@Autowired
 	private UserService userService; 
-	
-	/**@Autowired
-	private AccountService accountService;*/
-	
-	private Student student; 
-	private Account account;
 	private Student studentToEdit;
 	private List<Student> students; 
 	private Long numerator=(long) 2;
@@ -40,6 +32,7 @@ public class StudentController {
 		
 		try {
 			model.addAttribute("students", studentService.getAllStudents());
+			
 			} catch(Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
@@ -67,17 +60,57 @@ public class StudentController {
 				model.addAttribute("error", "Completar el campo de busqueda");
 				return "students/list";
 			}
+	}
 	
-		//return students;
+	public List<Student> searchStudentBy2(String estado, String career, Model model)
+	{
+		try {
+			if(!estado.isEmpty() && !career.isEmpty())
+			{
+				model.addAttribute("info", "Busqueda realizada correctamente");
+				students = studentService.fecthStudentByMCEX(estado, career);
+			
+			    if(!students.isEmpty())
+			    model.addAttribute("students", "students");			
+			    else {
+				model.addAttribute("info", "No se han encontrado coincidencias");
+				model.addAttribute("students", studentService.getAllStudents());
+			    }
+			}
+			else if(!estado.isEmpty() && career.isEmpty()) {
+				model.addAttribute("info", "Busqueda realizada correctamente");
+				students = studentService.fecthStudentByMC(estado, career);
+			
+			    if(!students.isEmpty())
+				model.addAttribute("students", "students");	    
+		    }
+			else if (estado.isEmpty() && !career.isEmpty()) {
+		    	model.addAttribute("info", "Busqueda realizada correctamente");
+				students = studentService.fecthStudentByMC(estado, career);
+			
+			    if(!students.isEmpty())
+				model.addAttribute("students", "students");	 
+		    }
+			else {
+				model.addAttribute("student", studentService.getAllStudents());
+				model.addAttribute("error", "Debe completar el campo de búsqueda");
+		    }
+	}catch(Exception e){
+		model.addAttribute("Error Student: ", e.getMessage());
+	}
+		return students;
+	}
+	
+	@GetMapping("/searchStudentALL")
+	public String searchStudentByAll(@RequestParam("estado") String estado, @RequestParam("career") String career, Model model){
+		model.addAttribute("students", searchStudentBy2(estado, career, model));
+		return "students/list";
 	}
 	
 	@GetMapping("/new")
 	public String newStudent(Model model){
 		
 		model.addAttribute("student", new Student());
-		//account = new Account();
-		//List<Account> accounts = accountService.getAllAccounts();
-		//model.addAttribute("accounts", accounts);
 		return "students/new";
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Professor;
+import com.matricula.model.entity.Student;
 
 @Repository
 public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
@@ -30,5 +31,11 @@ public interface ProfessorRepository  extends JpaRepository <Professor, Long> {
     
     @Query("SELECT p FROM Professor p WHERE p.estado=?1")
     List<Professor> findProfessorsAvailable(String contratado);
+    
+    @Query("SELECT p from Professor p where p.estado like ?1 or p.cargo like ?2")
+	 List<Professor> fecthProfessorByMC(String estado, String cargo);
+	  
+	 @Query("SELECT p from Professor p where p.estado like ?1 and p.cargo like ?2")
+	 List<Professor> fecthProfessorByMCEX(String estado, String cargo);
     
 }

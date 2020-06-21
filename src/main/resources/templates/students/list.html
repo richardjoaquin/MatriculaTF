@@ -16,22 +16,47 @@
 					<hr class="my-20">
 				</div>
 
-				<form action="/students/searchStudent" method="GET">
+				<form action="/students/searchStudentALL" method="GET">
 					<div class="form-row align-items-center">
-						<div class="col-auto">
-							<label class="sr-only" for="filterId">Buscar Alumno</label>
-							<input id="filterId" type="text" class="form control" name="filterId"
-							 placeholder="Buscar por codigo">
-						</div>
 								
+						<div class="col-auto">
+							<Label class="sr-only" for="estado">Datos a completar</Label> 
+								<input id="estado" type="text" class="form-control form-control-lg" 
+								name="estado"
+								placeholder="Estado a buscar">
+						</div>	
+				    
+					    <div class="col-auto">
+							<Label class="sr-only" for="career">Datos a completar</Label> 
+								<input id="career" type="text" class="form-control form-control-lg" 
+								name="career"
+								placeholder="Carrera a buscar">
+						</div>
+					    						
 						<div class="col-auto">
 							<button type="submit" class="btn btn-primary">Buscar</button>
 						</div>
-					</div>
+						
+			       </div>			
 				</form>	
 								
-				<h2>     </h2>				
+				<hr class="my-20">	
+				
+                 <form action="/students/searchStudent" method="GET">
+            <div class="form-row align-items-center">
+					
+             <div class="col-auto">
+                  <label class="sr-only" for="filterId">Buscar Alumno</label>
+                  <input id="filterId" type="text" class="form-control form-control-lg" name="filterId"
+                 placeholder="Buscar por codigo">
+                </div>
 
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Buscar</button>
+             </div>
+          </div>
+           </form>	
+                <h2>     </h2>	
 	<div class ="table-responsive">
 				<table class="table table-striped">
 					<thead class="thead-dark">
@@ -59,7 +84,7 @@
 							<td th:text="${student.modalidad}">MatriculaTF</td>
 							<td th:text="${student.correo}">MatriculaTF</td>
 							<td th:text="${student.estado}">MatriculaTF</td>
-						  <td><a th:href="@{'/students/edit/' + ${student.id}}"
+						    <td><a th:href="@{'/students/edit/' + ${student.id}}"
 								class="btn btn-warning">Modificar</a></td>
 						</tr>
 					</tbody>

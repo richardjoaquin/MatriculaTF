@@ -18,19 +18,15 @@ public class Professor {
 	Long id;
 	
 	@Column(name = "name")
-	//@NotEmpty(message="Ingrese nombre")
 	private String name;
 	
 	@Column(name = "last_name")
-	//@NotEmpty(message="Ingrese apellido")
 	private String lastName;
 	
 	@Column(name = "estado")
-	//@NotEmpty(message="Ingrese estado actual del profesor")
 	private String estado;
 	
 	@Column(name = "cargo")
-	//@NotEmpty(message="Ingrese cargo actual del profesor")
 	private String cargo;
 
 	public void setId(Long id) {

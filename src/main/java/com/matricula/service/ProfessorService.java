@@ -1,11 +1,8 @@
 package com.matricula.service;
 
 import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import com.matricula.model.entity.Professor;
+import com.matricula.model.entity.Student;
 
 public interface ProfessorService {
 	
@@ -26,5 +23,9 @@ public interface ProfessorService {
 	List<Professor> findProfessorOnCourse();
 	
 	List<Professor> getAllProfessorsAvailable();
+	
+	List<Professor> fecthProfessorByMC(String estado, String cargo) throws Exception;
+
+	List<Professor> fecthProfessorByMCEX(String estado, String cargo) throws Exception;
 
 }

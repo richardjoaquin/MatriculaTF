@@ -2,11 +2,8 @@ package com.matricula.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Student;
 import com.matricula.model.repository.StudentRepository;
@@ -24,16 +21,11 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override 
 	public List<Student> getAllStudents() {
-		List<Student> students = new ArrayList<>();
+		
+		List<Student> students =new ArrayList<>();
 		studentRepository.findAll().iterator().forEachRemaining(students::add);
 		return students;
 	}
-
-	/*
-	 * @Override public Incident getOneById(Long id) { // TODO Auto-generated method
-	 * stub return incidentRepository.findById(id).orElseThrow(() -> new
-	 * RuntimeException("Incident not found")); }
-	 */
 
 	@Override //
 	public Student createStudent(Student student) {
@@ -44,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student updateStudent(Long id, Student studentDetails) {
-		// TODO Auto-generated method stub
 		Student student = findById(id);
 
 		student.setAccount(studentDetails.getAccount());
@@ -78,17 +69,6 @@ public class StudentServiceImpl implements StudentService {
 
 		return students;
 	}
-/**
-	@Override
-	public boolean valid(Student student) {
-		List<Student> students = new ArrayList<>();
-		incidentRepository.findByObservations(incident.getObservations()).iterator().forEachRemaining(incidents::add);
-		if (!incidents.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
-	}**/
 
 	@Override
 	public Student getLatestEntry() {
@@ -101,17 +81,11 @@ public class StudentServiceImpl implements StudentService {
 		}
 	}
 
-	/*@Override
-	public List<Student> findById(Long id) {
-		return studentRepository.finById(id);
-	}*/
 	@Override
 	public Student findStudentByAccount(Long id){
 		Student student;
 		Account account=userService.getLoggedUser();
 		student=studentRepository.findStudentByAccount(account.getId());
-		//Long id=(long) 0;
-		//student=studentRepository.findStudentByAccount(id);
 		return student;
 	}
 
@@ -120,29 +94,14 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.findStudentOnStudentCourses();
 	}
 
+	@Override
+	public List<Student> fecthStudentByMC(String estado, String career) throws Exception {
+	return studentRepository.fecthStudentByMC(estado, career);
+	}
 	
-
-
-	/**@Override
-	public List<Student> getAllStudent() {
-		// TODO Auto-generated method stub
-		return null;
-	}**/
-
-	/**@Override
-	public Student createIncident(Student student) {
-		// TODO Auto-generated method stub
-		return null;
-	}**/
-//*
+	@Override
+	public List<Student> fecthStudentByMCEX(String estado, String career) throws Exception {
+	return studentRepository.fecthStudentByMCEX(estado, career);
+	}
 	
-	/**@Override
-	public Student findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}**/
-
-
-	
-
 }

@@ -1,26 +1,15 @@
 package com.matricula.controller;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Professor;
-import com.matricula.model.entity.Student;
 import com.matricula.service.ProfessorService;
 
 @Controller
@@ -130,7 +119,52 @@ public class ProfessorController {
 				return "professors/list";
 			}
 			//return professors;
-		} 
+	} 
+	
+	public List<Professor> searchProfessorBy2(String estado, String cargo, Model model)
+	{
+		try {
+			if(!estado.isEmpty() && !cargo.isEmpty())
+			{
+				model.addAttribute("info", "Busqueda realizada correctamente");
+				professors = professorService.fecthProfessorByMCEX(estado, cargo);
+			
+			    if(!professors.isEmpty())
+			    model.addAttribute("professors", "professors");			
+			    else {
+				model.addAttribute("info", "No se han encontrado coincidencias");
+				model.addAttribute("professors", professorService.getAllProfessors());
+			    }
+			}
+			else if(!estado.isEmpty() && cargo.isEmpty()) {
+				model.addAttribute("info", "Busqueda realizada correctamente");
+				professors = professorService.fecthProfessorByMC(estado, cargo);
+			
+			    if(!professors.isEmpty())
+				model.addAttribute("professors", "professors");	    
+		    }
+			else if (estado.isEmpty() && !cargo.isEmpty()) {
+		    	model.addAttribute("info", "Busqueda realizada correctamente");
+				professors = professorService.fecthProfessorByMC(estado, cargo);
+			
+			    if(!professors.isEmpty())
+				model.addAttribute("professors", "professors");	 
+		    }
+			else {
+				model.addAttribute("professor", professorService.getAllProfessors());
+				model.addAttribute("error", "Debe completar el campo de búsqueda");
+		    }
+	}catch(Exception e){
+		model.addAttribute("Error Student: ", e.getMessage());
+	}
+		return professors;
+	}
+	
+	@GetMapping("/searchProfessorALL")
+	public String searchProfessorByAll(@RequestParam("estado") String estado, @RequestParam("cargo") String cargo, Model model){
+		model.addAttribute("professors", searchProfessorBy2(estado, cargo, model));
+		return "professors/list";
+	}
 
 	public ProfessorService getProfessorService() {
 		return professorService;
