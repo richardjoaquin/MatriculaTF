@@ -19,7 +19,6 @@
 				<table class="table table-striped">
 					<thead class="thead-dark">
 						<tr>
-							<th></th>
 							<th>Curso</th>
 							<th>Profesor</th>
 							<th>Dia</th>
@@ -31,8 +30,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="course : ${courses}">
-
-							<td th:text="${course.id}">MatriculaTF</td>
 							<td th:text="${course.name}">MatriculaTF</td>
 							<td th:text="${course.professor.name +' '+ course.professor.lastName}">MatriculaTF</td>
 							<td th:text="${course.day}">MatriculaTF</td>

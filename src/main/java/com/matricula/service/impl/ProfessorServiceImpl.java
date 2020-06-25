@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.matricula.model.repository.ProfessorRepository;
 import com.matricula.model.entity.Professor;
-import com.matricula.model.entity.Student;
 import com.matricula.service.ProfessorService;
 
 @Service
@@ -48,12 +47,6 @@ public class ProfessorServiceImpl implements ProfessorService  {
 		professor.setEstado(professorDetails.getEstado());
 		professorRepository.save(professor);
 		return professor;
-	}
-
-	@Override
-	public void deleteProfessor(Long professorId) {
-		professorRepository.deleteById(professorId);
-		
 	}
 
 	@Override

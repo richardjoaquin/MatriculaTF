@@ -14,8 +14,6 @@ public interface StudentService {
 	
 	Student updateStudent(Long id, Student student);
 	
-	void deleteStudent(Long incidentId);
-	
 	Student findById(Long id);
 	
 	List<Student> finddById(Long id);

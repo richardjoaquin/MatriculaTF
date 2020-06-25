@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matricula.model.entity.Course;
+import com.matricula.model.entity.Matricula;
 import com.matricula.model.entity.Student;
 import com.matricula.model.entity.StudentCourse;
 import com.matricula.service.CourseService;
 import com.matricula.service.EnrollmentService;
+import com.matricula.service.MatriculaService;
 import com.matricula.service.StudentCourseService;
 import com.matricula.service.StudentService;
 import com.matricula.service.impl.StudentServiceImpl;
@@ -42,8 +44,13 @@ public class StudentCourseController {
 	@Autowired
 	private CourseService courseService;
 	
+	@Autowired
+	private MatriculaService matriculaService;
+	
 	private Course course=new Course();
 	private Course courseEdited=new Course();
+	private Matricula matriculaEdited = new Matricula();
+	private Matricula matricula = new Matricula ();
 	private Integer actualSemester=202002;
 	private String actualSemesterr="202002";
 	private Integer searchedSemester;
@@ -51,10 +58,7 @@ public class StudentCourseController {
 	
 	@GetMapping
 	public String showActualRegisteredCourses(Model model) throws Exception {
-		try {
-			
-		//Long idAccount=userServiceImpl.getLoggedUser().getId();
-		
+		try {	
 		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
@@ -66,7 +70,6 @@ public class StudentCourseController {
 	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {
 			
 			String url = "studentCourses/list";
-			//Long id=userServiceImpl.getLoggedUser().getId();
 			
 			if (!semester.isEmpty()) {
 				searchedSemester = Integer.parseInt(semester); 
@@ -87,21 +90,18 @@ public class StudentCourseController {
 					return "studentCourses/listCoursesActualSemester";
 				}
 			} else {
-				model.addAttribute("error", "Debe completar el campo de busqueda.");
+				model.addAttribute("error", "Completar el campo de busqueda.");
 				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 				return "studentCourses/listCoursesActualSemester";
 			}
-			//return professors;
 		} 
 	
-	//Obtener Curso para la matricula
 	@GetMapping("/connectCourse/{id}")
 	public String connectCourseToRegister(@PathVariable("id") Long id, Model model) throws Exception {
 		Long idd = courseService.findById(id).getId();
 		return "courses/confirmCourse";
 	}
 	
-	//Matricular alumno y restar uno a la cantidad de vacantes disponibles para el curso
 	@GetMapping("/register/{id}")
 	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
 		
@@ -119,25 +119,39 @@ public class StudentCourseController {
 			studentCourse.setCourse(courseService.findById(id));
 			studentCourseService.createStudentCourse(studentCourse);
 			//studentCourse.setStudent(studentService.findStudentByAc
-			course=courseService.findById(id);
+			
+			
+			matricula = matriculaService.findMatricula(student.getId(),actualSemester);
+			matriculaEdited=matricula;
+			matriculaEdited.setNcursos(matricula.getNcursos()+1);
+			matriculaService.updateMatricula(matricula.getId(), matriculaEdited);
+			
+			course = courseService.findById(id);
 			courseEdited=course;
 			courseEdited.setAmount(course.getAmount()-1);
 			courseService.updateCourse(course.getId(), courseEdited);
+			
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
 			}
 		}
 	
-	//borrar este comentario <-
-	//Desmatricular alumno y sumar uno a la cantidad de vacantes para curso 
 	@GetMapping("/delete/{id}")
-	public String deleteStudentCourse(@PathVariable("id") Long enrollmentToDeleteId, Model model) {
+	public String deleteStudentCourse(@PathVariable("id") Long enrollmentToDeleteId, Model model) throws Exception {
 		StudentCourse searchedStudentCourse=studentCourseService.findById(enrollmentToDeleteId);
 		Course course=courseService.findById(searchedStudentCourse.getCourse().getId());
 		if(course.getAmount()<10) {
 		course.setAmount(course.getAmount()+1);
 		}
+		Long idAccount=userServiceImpl.getLoggedUser().getId();
+		Student stu=studentServiceImpl.findStudentByAccount(idAccount);
+		
+		matricula = matriculaService.findMatricula(stu.getId(),actualSemester);
+		matriculaEdited=matricula;
+		matriculaEdited.setNcursos(matricula.getNcursos()-1);
+		matriculaService.updateMatricula(matricula.getId(), matriculaEdited);
+		
 		studentCourseService.deleteStudentCourse(enrollmentToDeleteId);
 		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
 		return "redirect:/studentCourses";
@@ -213,5 +227,21 @@ public class StudentCourseController {
 
 	public void setStudentCourses(List<StudentCourse> studentCourses) {
 		this.studentCourses = studentCourses;
+	}
+
+	public Matricula getMatriculaEdited() {
+		return matriculaEdited;
+	}
+
+	public void setMatriculaEdited(Matricula matriculaEdited) {
+		this.matriculaEdited = matriculaEdited;
+	}
+
+	public MatriculaService getMatriculaService() {
+		return matriculaService;
+	}
+
+	public void setMatriculaService(MatriculaService matriculaService) {
+		this.matriculaService = matriculaService;
 	}	
 }

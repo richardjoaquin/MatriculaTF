@@ -2,7 +2,6 @@ package com.matricula.service;
 
 import java.util.List;
 import com.matricula.model.entity.Professor;
-import com.matricula.model.entity.Student;
 
 public interface ProfessorService {
 	
@@ -11,8 +10,6 @@ public interface ProfessorService {
 	Professor createProfessor(Professor professor);
 	
 	Professor updateProfessor(Long id, Professor professor);
-	
-	void deleteProfessor(Long professorId);
 	
 	Professor findById(Long id);
 	

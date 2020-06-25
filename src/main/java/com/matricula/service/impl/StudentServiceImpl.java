@@ -50,12 +50,6 @@ public class StudentServiceImpl implements StudentService {
 		return student;
 	}
 
-
-	@Override
-	public void deleteStudent(Long studentId) {
-		studentRepository.deleteById(studentId);
-	}
-
 	@Override
 	public Student findById(Long id) {
 		Student student = studentRepository.fetchById(id);

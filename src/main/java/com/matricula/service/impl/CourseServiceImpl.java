@@ -2,17 +2,14 @@ package com.matricula.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 import com.matricula.model.entity.Account;
 import com.matricula.model.entity.Course;
 import com.matricula.model.entity.Student;
 import com.matricula.model.repository.CourseRepository;
-import com.matricula.model.repository.StudentRepository;
 import com.matricula.service.CourseService;
 import com.matricula.service.UserService;
 
@@ -53,11 +50,6 @@ public class CourseServiceImpl implements CourseService {
 		course.setEndTime(courseDetails.getEndTime());
 		courseRepository.save(course);
 		return course;
-	}
-	
-	@Override
-	public void deleteCourse(Long courseId) {
-		courseRepository.deleteById(courseId);
 	}
 
 	@Override

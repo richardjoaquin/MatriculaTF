@@ -81,22 +81,6 @@ public class ProfessorController {
 		}
     }
 	
-	@GetMapping("/delete/{id}")
-	public String deleteProfessor(@PathVariable("id") Long id, Model model) throws Exception {
-		
-		if(!professorService.findProfessorOnCourse().contains(professorService.findById(id))) {
-		professorService.deleteProfessor(id);
-		//professorService.deleteProfessor(professorService.findById(id).getId());
-		model.addAttribute("success", "Profesor eliminado correctamente");
-		model.addAttribute("professors", professorService.getAllProfessors());
-		return "professors/list";
-		}else {
-			model.addAttribute("error", "El profesor pertenece a un curso");
-			model.addAttribute("professors", professorService.getAllProfessors());
-			return "professors/list";
-		}
-	}
-	
 	@GetMapping("/search")
 	public String searchProfessorById(@RequestParam("filterId") String filterId, Model model) throws Exception {
 

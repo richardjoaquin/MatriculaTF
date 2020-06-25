@@ -24,31 +24,24 @@ public class Student {
 	private Account account;
 
 	@Column(name = "name")
-	//@NotEmpty(message="Ingrese nombre")
 	private String name;
 	
 	@Column(name = "lastname")
-	//@NotEmpty(message="Ingrese apellido")
 	private String lastName;
 	
 	@Column(name = "career")
-	//@NotEmpty(message="Ingrese carrera")
 	private String career;
 	
 	@Column(name = "semester")
-	//@NotEmpty(message="Ingrese en que ciclo se encuentra")
 	private Integer semester;
 	
 	@Column(name = "correo")
-	//@NotEmpty(message="Ingrese su email")
 	private String correo;
 	
 	@Column(name = "modalidad")
-	//@NotEmpty(message="Ingrese el tipo de modalidad")
 	private String modalidad;
 	
 	@Column(name = "estado")
-	//@NotEmpty(message="Ingrese el estado actual del alumno")
 	private String estado;
 	
 	public Long getId() {
@@ -122,8 +115,5 @@ public class Student {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-
 	
 }

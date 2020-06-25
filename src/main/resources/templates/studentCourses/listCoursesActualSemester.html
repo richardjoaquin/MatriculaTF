@@ -58,7 +58,7 @@
 
 							<td th:text="${studentCourse.enrollment.semester}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.name}">MatriculaTF</td>
-							<td th:text="${studentCourse.course.professor.name}">MatriculaTF</td>
+							<td th:text="${studentCourse.course.professor.name + ' ' + studentCourse.course.professor.lastName}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.day}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.startTime}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.endTime}">MatriculaTF</td>

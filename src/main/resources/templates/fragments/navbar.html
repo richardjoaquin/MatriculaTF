@@ -33,6 +33,10 @@
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
         <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestion Alumnos</a>
         </li>
+        
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/matriculas/list}">Reporte Matricula</a>
+        </li>
       
         <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
         <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/studentCourses}">Situacion Academica</a>

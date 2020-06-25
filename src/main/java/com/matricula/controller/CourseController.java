@@ -103,23 +103,6 @@ public class CourseController {
 			return "courses/edit";
 		}
 	}
- 
-	
-	@GetMapping("/delete/{id}")
-	public String deleteCourse(@PathVariable("id") long id, Model model) throws Exception {		
-		if(!courseService.findCourseOnStudentCourses().contains(courseService.findById(id))) {
-			courseService.deleteCourse(id);
-			model.addAttribute("success", "Curso eliminado correctamente");
-			model.addAttribute("courses", courseService.getAllCourses());
-			model.addAttribute("coursesToSearch", courseService.getAllCourses());
-			return "courses/list";
-			}else {
-				model.addAttribute("error", "Alumnos se encuentran matriculados en el curso");
-				model.addAttribute("courses", courseService.getAllCourses());
-				model.addAttribute("coursesToSearch", courseService.getAllCourses());
-				return "courses/list";
-			}
-	}
 	
 	@GetMapping("/search")
 	public String searchCourseByName(@RequestParam("filterName") String filterName, Model model) throws Exception {

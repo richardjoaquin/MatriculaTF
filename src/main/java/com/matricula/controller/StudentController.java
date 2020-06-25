@@ -51,12 +51,12 @@ public class StudentController {
 					model.addAttribute("students", students);
 					return "students/list";
 				} else {
-					model.addAttribute("info", "No existe el codigo del alumno");
-					model.addAttribute("students", students);
+					model.addAttribute("error", "No existe el codigo del alumno");
+					model.addAttribute("students", studentService.getAllStudents());
 					return "students/list";
 				}
 			} else {
-				model.addAttribute("students", students);
+				model.addAttribute("students", studentService.getAllStudents());
 				model.addAttribute("error", "Completar el campo de busqueda");
 				return "students/list";
 			}
@@ -66,34 +66,37 @@ public class StudentController {
 	{
 		try {
 			if(!estado.isEmpty() && !career.isEmpty())
-			{
-				model.addAttribute("info", "Busqueda realizada correctamente");
+			{			
 				students = studentService.fecthStudentByMCEX(estado, career);
 			
-			    if(!students.isEmpty())
-			    model.addAttribute("students", "students");			
+			    if(!students.isEmpty()) {
+			    model.addAttribute("info", "Busqueda realizada correctamente");
+			    model.addAttribute("students", students);	}
 			    else {
 				model.addAttribute("info", "No se han encontrado coincidencias");
 				model.addAttribute("students", studentService.getAllStudents());
 			    }
-			}
-			else if(!estado.isEmpty() && career.isEmpty()) {
+			} else if(!estado.isEmpty() && career.isEmpty()) {				
+				students = studentService.fecthStudentByMC(estado, career);		
+			    if(!students.isEmpty()){
+			    model.addAttribute("students", students);	
 				model.addAttribute("info", "Busqueda realizada correctamente");
+				}   else {
+					model.addAttribute("info", "No se han encontrado coincidencias");
+					model.addAttribute("students", studentService.getAllStudents());
+				    }
+		    } else if (estado.isEmpty() && !career.isEmpty()) {		    	
 				students = studentService.fecthStudentByMC(estado, career);
-			
 			    if(!students.isEmpty())
-				model.addAttribute("students", "students");	    
-		    }
-			else if (estado.isEmpty() && !career.isEmpty()) {
-		    	model.addAttribute("info", "Busqueda realizada correctamente");
-				students = studentService.fecthStudentByMC(estado, career);
-			
-			    if(!students.isEmpty())
-				model.addAttribute("students", "students");	 
-		    }
-			else {
-				model.addAttribute("student", studentService.getAllStudents());
-				model.addAttribute("error", "Debe completar el campo de búsqueda");
+				{model.addAttribute("students", students);
+				 model.addAttribute("info", "Busqueda realizada correctamente");
+				}else {
+					model.addAttribute("info", "No se han encontrado coincidencias");
+					model.addAttribute("students", studentService.getAllStudents());
+				    }
+		    } else {
+				model.addAttribute("students", studentService.getAllStudents());
+				model.addAttribute("error", "Completar el campo de búsqueda");
 		    }
 	}catch(Exception e){
 		model.addAttribute("Error Student: ", e.getMessage());
@@ -103,8 +106,16 @@ public class StudentController {
 	
 	@GetMapping("/searchStudentALL")
 	public String searchStudentByAll(@RequestParam("estado") String estado, @RequestParam("career") String career, Model model){
+		if((!estado.isEmpty() && !career.isEmpty()) ||(!estado.isEmpty() && career.isEmpty()) || (estado.isEmpty() && !career.isEmpty()) ){
 		model.addAttribute("students", searchStudentBy2(estado, career, model));
 		return "students/list";
+		}
+		else
+		{
+			model.addAttribute("students", studentService.getAllStudents());
+			model.addAttribute("error", "Completar algún campo de búsqueda");
+			return "students/list";
+		}
 	}
 	
 	@GetMapping("/new")
@@ -150,21 +161,5 @@ public class StudentController {
 			return "students/edit";
 		}
     }
-	
-	@GetMapping("/delete/{id}")
-	public String deleteStudent(@PathVariable("id") Long id, Model model) throws Exception {
-		
-		if(!studentService.findStudentOnStudentCourses().contains(studentService.findById(id))) {
-			studentService.deleteStudent(id);
-			//professorService.deleteProfessor(professorService.findById(id).getId());
-			model.addAttribute("success", "Estudiante eliminado correctamente");
-			model.addAttribute("students", studentService.getAllStudents());
-			return "students/list";
-			}else {
-				model.addAttribute("error", "El alumno se encuentra matriculado en uno o mas cursos");
-				model.addAttribute("students", studentService.getAllStudents());
-				return "students/list";
-			}
-	}
 	
 }
