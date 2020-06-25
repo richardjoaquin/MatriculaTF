@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +22,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "user_name",length = 30, unique = true)
+	@Column(name = "user_name",length = 9, unique = true)
 	private String userName;
 
 	
@@ -37,12 +36,6 @@ public class Account {
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
 	
-	/*
-	@ManyToOne
-	@JoinColumn(name = "student_id",nullable=false)
-	private Student student;*/
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -82,14 +75,4 @@ public class Account {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
-	/*
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-*/
 	}
