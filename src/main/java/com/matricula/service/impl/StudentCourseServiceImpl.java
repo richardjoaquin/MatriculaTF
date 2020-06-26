@@ -25,17 +25,12 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	@Autowired
 	private UserService userService;
 	
-	
 	@Override
-	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester) {
-		
+	public List<StudentCourse> fetchStudentCourseBySemester(Integer semester) {		
 		Account account=userService.getLoggedUser();
-		Student student=studentRepository.findStudentByAccount(account.getId());
-		
-		//Student student = studentRepository.findStudentByAccount(id);
+		Student student=studentRepository.findStudentByAccount(account.getId());		
 		return studentCourseRepository.fetchStudentCourseBySemester(semester, student.getId());		
 	}
-	
 	
 	@Override
 	public StudentCourse createStudentCourse(StudentCourse studentCourse) {
@@ -46,8 +41,6 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 
 	@Override
 	public StudentCourse updateStudentCourse(Long id, StudentCourse studentCourse) {
-		// TODO Auto-generated method stub
-		
 		StudentCourse newStudentCourse = findById(id);
 		newStudentCourse.setCourse(studentCourse.getCourse());
 		newStudentCourse.setEnrollment(studentCourse.getEnrollment());
@@ -65,19 +58,16 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 	public List<StudentCourse> validateCoursesStudentRegistered(Long idCourse) {
 		Account account=userService.getLoggedUser();
 		Student student=studentRepository.findStudentByAccount(account.getId());
-		//Student student = studentRepository.findStudentByAccount(idAccount);
 		return studentCourseRepository.CourseStudentRegistered(idCourse, student.getId());
 	}
 	
 	@Override
 	public StudentCourse findById(Long id) {
-		return studentCourseRepository.fetchById(id);
-		
+		return studentCourseRepository.fetchById(id);		
 	}
 
 	@Override
 	public StudentCourse findByName(String name) {
 		return null;
 	}
-
 }

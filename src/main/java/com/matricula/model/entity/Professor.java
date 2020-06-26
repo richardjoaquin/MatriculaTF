@@ -65,7 +65,5 @@ public class Professor {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
-	}
-
-	
+	}	
 }

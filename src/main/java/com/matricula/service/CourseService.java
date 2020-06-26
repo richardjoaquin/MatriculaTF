@@ -9,8 +9,6 @@ public interface CourseService {
 	List<Course> getAllCourses();
 	
 	List<Course> findCourseOnStudentCourses();
-		
-	//List<String> getAllCoursesToSearch();
 	
 	Course createCourse(Course course);
 	
@@ -19,13 +17,8 @@ public interface CourseService {
 	Course findById(Long id);
 	
 	Course getLatestEntry();
-
-    //List<Course> findByName(String name);
 	
 	List<Course> findByName(String name);
     
-    List<Course> findCoursesAvailables();
-          
-    //Page<Course> findCoursesAvailables(Pageable pageable);
-
+    List<Course> findCoursesAvailables();          
 }

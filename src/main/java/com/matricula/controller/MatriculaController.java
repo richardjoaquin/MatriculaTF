@@ -134,6 +134,5 @@ public class MatriculaController {
 
 	public void setMatriculaService(MatriculaService matriculaService) {
 		this.matriculaService = matriculaService;
-	}
-	
+	}	
 }

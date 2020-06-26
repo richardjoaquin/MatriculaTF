@@ -67,8 +67,7 @@ public class StudentController {
 		try {
 			if(!estado.isEmpty() && !career.isEmpty())
 			{			
-				students = studentService.fecthStudentByMCEX(estado, career);
-			
+				students = studentService.fecthStudentByMCEX(estado, career);		
 			    if(!students.isEmpty()) {
 			    model.addAttribute("info", "Busqueda realizada correctamente");
 			    model.addAttribute("students", students);	}
@@ -109,9 +108,7 @@ public class StudentController {
 		if((!estado.isEmpty() && !career.isEmpty()) ||(!estado.isEmpty() && career.isEmpty()) || (estado.isEmpty() && !career.isEmpty()) ){
 		model.addAttribute("students", searchStudentBy2(estado, career, model));
 		return "students/list";
-		}
-		else
-		{
+		}else{
 			model.addAttribute("students", studentService.getAllStudents());
 			model.addAttribute("error", "Completar algún campo de búsqueda");
 			return "students/list";
@@ -119,8 +116,7 @@ public class StudentController {
 	}
 	
 	@GetMapping("/new")
-	public String newStudent(Model model){
-		
+	public String newStudent(Model model){	
 		model.addAttribute("student", new Student());
 		return "students/new";
 	}
@@ -129,7 +125,6 @@ public class StudentController {
 	public String createStudentForm(Student student, Model model) throws Exception {
 		if(student.getName().isEmpty()==false && student.getLastName().isEmpty()==false && student.getCorreo().isEmpty()==false) {
 		numerator++;
-		//Long numerator=1L;
 		student.setAccount(userService.findById(numerator));
 		studentService.createStudent(student);
 		model.addAttribute("students", studentService.getAllStudents());
@@ -160,6 +155,5 @@ public class StudentController {
 			model.addAttribute("student", studentToEdit);
 			return "students/edit";
 		}
-    }
-	
+    }	
 }

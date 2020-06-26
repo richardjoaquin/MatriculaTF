@@ -14,7 +14,6 @@ public interface StudentCourseRepository extends JpaRepository<StudentCourse, Lo
 	@Query("select sc from StudentCourse sc where sc.enrollment.semester=?1 AND sc.student.id=?2")
 	List<StudentCourse> fetchStudentCourseBySemester(Integer semester,Long studentId);
 
-	//Query para Alumno: Validar que ya esta matriculado en un curso
 	@Query("SELECT sc FROM StudentCourse sc WHERE sc.course.id=?1 AND sc.student.id=?2")
 	List<StudentCourse> CourseStudentRegistered(Long idCourse, Long studentId);
 	

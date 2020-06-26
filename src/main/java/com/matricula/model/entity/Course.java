@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "courses")
@@ -21,43 +20,29 @@ public class Course {
 	Long id;
 	
 	@Column(name = "name")
-	@NotEmpty//(message="Ingrese nombre")
 	private String name;
 	
 	@Column(name = "amount")
-	//@NotNull(message="Ingrese cantidad de alumnos")
 	private Integer amount;
 	
-	
-	//@NotEmpty(message="Ingrese profesor")
 	@ManyToOne
 	@JoinColumn(name="professor_id")
 	private Professor professor;
 	
 	@Column(name = "semester")
-	//@NotNull(message="Ingrese ciclo del curso")
 	private Integer semester;
 	
 	@Column(name = "career")
-	//@NotEmpty(message="Ingrese carrera del curso")
 	private String career;
 	
 	@Column(name = "day")
-	//@NotEmpty(message="Debe ingresar el dÃ­a")
 	private String day;
 	
 	@Column(name = "start_time")
-	//@NotEmpty(message="Debe ingresar la hora de inicio")
 	private String startTime;
 	
 	@Column(name = "end_time")
-	//@NotEmpty(message="Debe ingresar la hora de fin")
 	private String endTime;
-	
-	//private Account user;
-	
-	/*@ManyToMany(mappedBy = "students")
-	private List<Student> student;*/
 
 	public Long getId() {
 		return id;

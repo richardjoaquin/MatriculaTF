@@ -102,7 +102,6 @@ public class ProfessorController {
 				model.addAttribute("professors", professorService.getAllProfessors());
 				return "professors/list";
 			}
-			//return professors;
 	} 
 	
 	public List<Professor> searchProfessorBy2(String estado, String cargo, Model model)
@@ -165,5 +164,4 @@ public class ProfessorController {
 	public void setProfessors(List<Professor> professors) {
 		this.professors = professors;
 	}
-	
 }

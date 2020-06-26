@@ -61,16 +61,13 @@ public class StudentCourseController {
 		try {	
 		model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
 		} catch(Exception e) {
-		model.addAttribute("error",e.getMessage());
-	}
+		model.addAttribute("error",e.getMessage());}
 		return "studentCourses/listCoursesActualSemester";
 	}
 		
 	@GetMapping("/search")
-	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {
-			
-			String url = "studentCourses/list";
-			
+	public String searchStudentCourseBySemester(@RequestParam("semester") String semester, Model model) throws Exception {	
+			String url = "studentCourses/list";	
 			if (!semester.isEmpty()) {
 				searchedSemester = Integer.parseInt(semester); 
 				studentCourses= studentCourseService.fetchStudentCourseBySemester(searchedSemester);
@@ -92,8 +89,7 @@ public class StudentCourseController {
 			} else {
 				model.addAttribute("error", "Completar el campo de busqueda.");
 				model.addAttribute("studentCourses", studentCourseService.fetchStudentCourseBySemester(actualSemester));
-				return "studentCourses/listCoursesActualSemester";
-			}
+				return "studentCourses/listCoursesActualSemester";}
 		} 
 	
 	@GetMapping("/connectCourse/{id}")
@@ -103,11 +99,9 @@ public class StudentCourseController {
 	}
 	
 	@GetMapping("/register/{id}")
-	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {
-		
+	public String createStudentCourse(@PathVariable("id") Long id, Model model) throws Exception {	
 		Long idAccount=userServiceImpl.getLoggedUser().getId();
-		Student student=studentServiceImpl.findStudentByAccount(idAccount);
-		
+		Student student=studentServiceImpl.findStudentByAccount(idAccount);	
 		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
@@ -117,41 +111,33 @@ public class StudentCourseController {
 			studentCourse.setStudent(studentService.findById(student.getId()));
 			studentCourse.setEnrollment(enrollmentService.findBySemester(actualSemester));
 			studentCourse.setCourse(courseService.findById(id));
-			studentCourseService.createStudentCourse(studentCourse);
-			//studentCourse.setStudent(studentService.findStudentByAc
-			
-			
+			studentCourseService.createStudentCourse(studentCourse);					
 			matricula = matriculaService.findMatricula(student.getId(),actualSemester);
 			matriculaEdited=matricula;
 			matriculaEdited.setNcursos(matricula.getNcursos()+1);
-			matriculaService.updateMatricula(matricula.getId(), matriculaEdited);
-			
+			matriculaService.updateMatricula(matricula.getId(), matriculaEdited);			
 			course = courseService.findById(id);
 			courseEdited=course;
 			courseEdited.setAmount(course.getAmount()-1);
-			courseService.updateCourse(course.getId(), courseEdited);
-			
+			courseService.updateCourse(course.getId(), courseEdited);		
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
 			return "courses/listCoursesAvailables";
-			}
 		}
+	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteStudentCourse(@PathVariable("id") Long enrollmentToDeleteId, Model model) throws Exception {
 		StudentCourse searchedStudentCourse=studentCourseService.findById(enrollmentToDeleteId);
 		Course course=courseService.findById(searchedStudentCourse.getCourse().getId());
 		if(course.getAmount()<10) {
-		course.setAmount(course.getAmount()+1);
-		}
+		course.setAmount(course.getAmount()+1);}
 		Long idAccount=userServiceImpl.getLoggedUser().getId();
-		Student stu=studentServiceImpl.findStudentByAccount(idAccount);
-		
+		Student stu=studentServiceImpl.findStudentByAccount(idAccount);	
 		matricula = matriculaService.findMatricula(stu.getId(),actualSemester);
 		matriculaEdited=matricula;
 		matriculaEdited.setNcursos(matricula.getNcursos()-1);
-		matriculaService.updateMatricula(matricula.getId(), matriculaEdited);
-		
+		matriculaService.updateMatricula(matricula.getId(), matriculaEdited);	
 		studentCourseService.deleteStudentCourse(enrollmentToDeleteId);
 		model.addAttribute("sucess","Matricula de curso eliminada correctamente");
 		return "redirect:/studentCourses";

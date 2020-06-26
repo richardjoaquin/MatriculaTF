@@ -18,7 +18,6 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	private CourseRepository courseRepository;
-	
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -78,11 +77,8 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<Course> findCoursesAvailables() {
-	
-		
 		Account account=userService.getLoggedUser();
-		Student student=studentServiceImpl.findStudentByAccount(account.getId());
-		 
+		Student student=studentServiceImpl.findStudentByAccount(account.getId()); 
 		return courseRepository.findCoursesAvailables(student.getCareer() , student.getSemester());
 	}
 

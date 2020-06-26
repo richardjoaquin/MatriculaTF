@@ -20,8 +20,7 @@ public class StudentServiceImpl implements StudentService {
 	private UserService userService;
 
 	@Override 
-	public List<Student> getAllStudents() {
-		
+	public List<Student> getAllStudents() {	
 		List<Student> students =new ArrayList<>();
 		studentRepository.findAll().iterator().forEachRemaining(students::add);
 		return students;
@@ -37,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student updateStudent(Long id, Student studentDetails) {
 		Student student = findById(id);
-
 		student.setAccount(studentDetails.getAccount());
 		student.setCareer(studentDetails.getCareer());
 		student.setLastName(studentDetails.getLastName());
@@ -53,14 +51,12 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student findById(Long id) {
 		Student student = studentRepository.fetchById(id);
-
 		return student;
 	}
 	
 	@Override
 	public List<Student> finddById(Long id) {
 		List<Student> students = studentRepository.fetchhById(id);
-
 		return students;
 	}
 
@@ -71,8 +67,7 @@ public class StudentServiceImpl implements StudentService {
 			return null;
 		} else {
 			Long latestStudentID = studentRepository.findTopByOrderByIdDesc();
-			return findById(latestStudentID);
-		}
+			return findById(latestStudentID);}
 	}
 
 	@Override
@@ -97,5 +92,4 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> fecthStudentByMCEX(String estado, String career) throws Exception {
 	return studentRepository.fecthStudentByMCEX(estado, career);
 	}
-	
 }

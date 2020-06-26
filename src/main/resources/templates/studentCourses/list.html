@@ -31,7 +31,6 @@
 									<option value="201902">201902</option>
 									<option value="202001">202001</option>
 									<option value="202002">202002</option>
-		
 								</select>											
 					  <div class="col-auto">
 						  <button type="submit" onclick="getData()" class="btn btn-primary">Buscar</button>
@@ -55,14 +54,12 @@
 					</thead>
 					<tbody>
 						<tr th:each="studentCourse : ${studentCourses}">
-
 							<td th:text="${studentCourse.enrollment.semester}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.name}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.professor.name}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.day}">MatriculaTF</td>
 							<td th:text="${studentCourse.course.startTime}">MatriculaTF</td>
-							<td th:text="${studentCourse.course.endTime}">MatriculaTF</td>
-							
+							<td th:text="${studentCourse.course.endTime}">MatriculaTF</td>						
 						</tr>
 					</tbody>
 				</table>

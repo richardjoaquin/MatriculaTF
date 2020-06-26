@@ -1,6 +1,7 @@
 package com.matricula.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,18 @@ public class CourseController {
 	private Course courseToEdit;
 	private Professor professor;
 	
-	//FOR ADMIN
+	//Alumno
+	@GetMapping("/listCoursesAvailables")
+	public String showAllCoursesAvailables(Model model) throws Exception {
+	try {
+		model.addAttribute("courses", courseService.findCoursesAvailables());
+		} catch(Exception e) {
+		model.addAttribute("error",e.getMessage());
+	}
+		return "courses/listCoursesAvailables";
+	}
+	
+	//Admin
 	@GetMapping("/list")
 	public String showAllCourses(Model model) throws Exception {
 		try {
@@ -38,17 +50,6 @@ public class CourseController {
 		model.addAttribute("error",e.getMessage());
 	}
 		return "courses/list";
-	}
-	
-	//FOR STUDENT
-	@GetMapping("/listCoursesAvailables")
-	public String showAllCoursesAvailables(Model model) throws Exception {
-		try {
-		model.addAttribute("courses", courseService.findCoursesAvailables());
-		} catch(Exception e) {
-		model.addAttribute("error",e.getMessage());
-	}
-		return "courses/listCoursesAvailables";
 	}
 	
 	@GetMapping("/new")
@@ -110,12 +111,12 @@ public class CourseController {
 			if (!filterName.isEmpty()) {
 				List<Course> courses = courseService.findByName(filterName);
 				if (!courses.isEmpty()) {
-					model.addAttribute("info", "Se realizo correctamente");
+					model.addAttribute("info", "Busqueda realizada correctamente");
 					model.addAttribute("courses", courses);
 					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";
 				} else {
-					model.addAttribute("info", "No existen el curso");
+					model.addAttribute("info", "No existe el curso");
 					model.addAttribute("coursesToSearch", courseService.getAllCourses());
 					return "courses/list";
 				}
@@ -124,6 +125,5 @@ public class CourseController {
 				model.addAttribute("coursesToSearch", courseService.getAllCourses());
 				return "courses/list";
 			}
-		//return courses;
 	}
 }
