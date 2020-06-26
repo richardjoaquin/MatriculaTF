@@ -42,7 +42,7 @@ INSERT INTO enrollments (semester) VALUES (201902);
 INSERT INTO enrollments (semester) VALUES (202001); 
 INSERT INTO enrollments (semester) VALUES (202002); 
 
-INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$12GHs98dakOMeXnDOlc//uKGjX6tuaU1tTBmukz3Xa20Ga6kktVMG','admin1');
+INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$ZWms2N9cSc83jqNc0rz5XerTIHEAgsnGvNkbUfnsi3h6PtAVYuopS','admin1');
 INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$JWYb0OnTUoAW.9OKtCuVzeqcWrpKDiQ9PXjvv6Mr2ADOyU2UOOSuW','%%%%%%%%');
 INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$jkDJGLGy33byW09rVbDaXOToDGS9/9cAtekwBbvwv6.RfojERrBYq','sramirez3');
 INSERT INTO  accounts(enabled,password,user_name) VALUES(true,'$2a$10$efm6BWgQUkMRcqkd1mitdenaSuf6DAAejBOys4BJtxjovhPSqjMQO','rventura4');
