@@ -21,6 +21,10 @@
        <li class="nav-item active">
       
         <span class="sr-only">(current)</span>
+        
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestion Alumnos</a>
+        </li>
         	
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" >
         <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/professors/list}" >Gestion Profesores</a>
@@ -28,10 +32,6 @@
       
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
         <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/list}" >Gestion Cursos</a>
-        </li>
-      
-        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/students/list}">Gestion Alumnos</a>
         </li>
         
         <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
@@ -43,7 +43,7 @@
         </li>
       
         <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
-        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCoursesAvailables}">Matricula</a>
+        <a class="nav-link" sec:authorize=isAuthenticated() th:href="@{/courses/listCDisponibles}">Matricula</a>
         </li>
       
         <li class="nav-item">

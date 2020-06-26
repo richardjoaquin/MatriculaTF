@@ -105,7 +105,7 @@ public class StudentCourseController {
 		if (studentCourseService.validateCoursesStudentRegistered(courseService.findById(id).getId()).isEmpty()==false) {
 			model.addAttribute("error", "Usted ya se encuentra matriculado en este curso");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
-			return "courses/listCoursesAvailables";
+			return "courses/listCDisponibles";
 			} else {
 			StudentCourse studentCourse = new StudentCourse();
 			studentCourse.setStudent(studentService.findById(student.getId()));
@@ -122,7 +122,7 @@ public class StudentCourseController {
 			courseService.updateCourse(course.getId(), courseEdited);		
 			model.addAttribute("success", "Matricula realizada correctamente");
 			model.addAttribute("courses", courseService.findCoursesAvailables());
-			return "courses/listCoursesAvailables";
+			return "courses/listCDisponibles";
 		}
 	}
 	

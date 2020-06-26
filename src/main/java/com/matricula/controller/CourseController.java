@@ -30,14 +30,14 @@ public class CourseController {
 	private Professor professor;
 	
 	//Alumno
-	@GetMapping("/listCoursesAvailables")
+	@GetMapping("/listCDisponibles")
 	public String showAllCoursesAvailables(Model model) throws Exception {
 	try {
 		model.addAttribute("courses", courseService.findCoursesAvailables());
 		} catch(Exception e) {
 		model.addAttribute("error",e.getMessage());
 	}
-		return "courses/listCoursesAvailables";
+		return "courses/listCDisponibles";
 	}
 	
 	//Admin
