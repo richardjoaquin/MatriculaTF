@@ -96,6 +96,7 @@ public class CourseController {
 		courseService.updateCourse(id, course);
         model.addAttribute("success", "Curso guardado con exito");
 		model.addAttribute("courses", courseService.getAllCourses());
+		model.addAttribute("coursesToSearch", courseService.getAllCourses());
 		return "courses/list";
 		} else {
 			model.addAttribute("error","Completar todos los campos");
